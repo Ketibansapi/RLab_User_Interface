@@ -13,10 +13,10 @@
   <title>XRLab - Where the project builts on </title>
 </head>
 
-<body>
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+<body data-spy="scroll" data-target="#main-nav" id="home">
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" id="main-nav">
     <div class="container">
-      <a href="index.html" class="navbar-brand"><i class="fas fa-atom"></i>  Reactor Lab</a>
+      <a href="index.html" class="navbar-brand"><i class="fas fa-atom"></i>ReactorLab</a>
       <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -75,13 +75,13 @@
           <div class="col-lg-4">
               <div class="card bg-dark text-center card-form">
               <div class="card-body">
-                <h4 class="card-title">Find the project here</h4>
+                <h3 class="card-title">Find the project here</h3>
                 <p></p>
                 <form>
                   <div class="form-group">
                     <input type="text" class="form-control form-control-lg" placeholder="Example: Rocket Mission">
                   </div>
-                  <input type="submit" value="Submit" class="btn btn-outline-light btn-block">
+                  <input type="submit" value="Search" class="btn btn-outline-warning btn-block">
                 </form>
               </div>
             </div>
@@ -98,11 +98,74 @@
         <div class="col text-center py-5">
           <h1 class="display-4">Explore</h1>
           <p class="lead">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat exercitationem assumenda ipsa voluptas aliquam eaque quas alias officia, nulla fugit.</p>
-          <a href="" class="btn btn-outline-secondary">Find out more</a>
+          <a href="" class="btn btn-outline-warning">Find out more</a>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Explore Section -->
+  <section id="explore-section" class="bg-light text-muted py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <img src="img/fly.png" alt="" class="img-fluid mb-3 rounded" >
+        </div>
+        <div class="col-md-6">
+          <h3>Integrate with us.</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere quas tempore doloremque enim pariatur inventore animi dolore laborum sapiente! Aut?</p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor dolorum explicabo dolores?</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="main-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col text-center py-4">
+           <h3>Keep in touch with ReactorLab</h3>
+           <p>&copy;<span id="year"></span> ReactorLab Teamdev, All right reserved.</p>
+           <button class="btn btn-warning" data-toggle="modal" data-target="#contactModal">Contact us</button>
+          </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Contact Modal -->
+  <div class="modal fade text-dark" id="contactModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Contact us</h5>
+          <button class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control">
+              </div>
+              <div class="form-group">
+                  <label for="message">Message</label>
+                  <textarea class="form-control"> </textarea>
+              </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-warning btn-block">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 
   <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -115,6 +178,24 @@
   <script>
     // Get the current year for the copyright
     $('#year').text(new Date().getFullYear());
+
+    //Init scrollspy
+    $('body').scrollspy({target: '#main-nav'});
+
+    // Smooth Scrolling
+    $("#main-nav a").on('click', function (event) {
+      if (this.hash !== "") {
+        event.preventDefault();
+
+        const hash = this.hash;
+
+        $('html, body').animate({
+          scrollTop: $(hash).offset().top
+        }, 800, function() {
+          window.location.hash = hash;
+        });
+      }
+    });
   </script>
 </body>
 
